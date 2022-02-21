@@ -4,19 +4,19 @@ import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 
 const data = {
-    labels: ["Fat", "Carbohydrate", "Protein"],
-    datasets: [{
-        data: [9.51, 0.72, 12.56]
-    }]
+  labels: ["Fat", "Carbohydrate", "Protein"],
+  datasets: [{
+    data: [9.51, 0.72, 12.56]
+  }]
 };
 
 const DoughnutChart = () => {
-    return (
+  return (
     <div>
-        <Doughnut data={data}/>
-        <h1>Working</h1>
+      <Doughnut data={data} />
+      <h1>Working</h1>
     </div>
-    )
+  )
 };
 
 // "food_name": "eggs",

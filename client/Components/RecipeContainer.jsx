@@ -7,61 +7,27 @@ import { Grid } from '@mui/material';
 //Import Components
 import RecipeCard from './RecipeCards.jsx';
 
-const recipeName = 'Pasta'
-const ingredientData = [{
-    "food_name": "eggs",
-    "serving_qty": 1,
-}, {
-        "food_name": "bacon",
-        "serving_qty": 2,
-    }, {
-        "food_name": "cheese",
-        "serving_qty": 2,
-    }, {
-        "food_name": "toast",
-        "serving_qty": 1,
-    }, {
-        "food_name": "ketchup",
-        "serving_qty": 2,
-    }, {
-        "food_name": "lettuce",
-        "serving_qty": 2,
-    },
-];
-
 console.log(ingredientData)
 
 const RecipeContainer = () => {
-    // const [recipeString, setterFunction] = useState(initialState)
 
-    return (
-			<Grid container direction="column" spacing={4}>
-				<Grid item>
+  return (
+    <Grid container direction="column" spacing={4}>
 
-        <RecipeCard 
-        className ="recipeContainer"
-        name={recipeName}
-        ingredients={ingredientData}
-        />
-				</Grid>
-				<Grid item>
+      <Grid item>
+        <RecipeCard/>
+      </Grid>
 
-        <RecipeCard 
-        className ="recipeContainer"
-        name={recipeName}
-        ingredients={ingredientData}
-        />
-				</Grid>
-				<Grid item>
+      <Grid item>
+        <RecipeCard/>
+      </Grid>
 
-        <RecipeCard 
-        className ="recipeContainer"
-        name={recipeName}
-        ingredients={ingredientData}
-        />
-				</Grid>
-			</Grid>
-    )
+      <Grid item>
+        <RecipeCard/>
+      </Grid>
+
+    </Grid>
+  )
 }
 
 export default RecipeContainer;
