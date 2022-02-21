@@ -11,7 +11,7 @@ import thumb from './Jabba.png';
 
 const Chart = () => (
 	<div className="charts">
-		<img src={thumb} alt=''  />
+		{/* <img src={thumb} alt=''  /> */}
 	</div>
 );
 

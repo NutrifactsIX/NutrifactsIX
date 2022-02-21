@@ -2,6 +2,7 @@
 import React from 'react';
 import { useState } from 'react';
 import '../App.scss';
+import { Grid } from '@mui/material';
 
 //Import Components
 import RecipeCard from './RecipeCards.jsx';
@@ -34,11 +35,32 @@ const RecipeContainer = () => {
     // const [recipeString, setterFunction] = useState(initialState)
 
     return (
+			<Grid container direction="column" spacing={4}>
+				<Grid item>
+
         <RecipeCard 
         className ="recipeContainer"
         name={recipeName}
         ingredients={ingredientData}
         />
+				</Grid>
+				<Grid item>
+
+        <RecipeCard 
+        className ="recipeContainer"
+        name={recipeName}
+        ingredients={ingredientData}
+        />
+				</Grid>
+				<Grid item>
+
+        <RecipeCard 
+        className ="recipeContainer"
+        name={recipeName}
+        ingredients={ingredientData}
+        />
+				</Grid>
+			</Grid>
     )
 }
 
