@@ -8,10 +8,21 @@ import RecipeContainer from './Components/RecipeContainer.jsx';
 import AddRecipe from './Components/AddRecipe.jsx';
 import { Grid } from '@mui/material';
 // import Input from './Components/IngredientInput'
-
+import IngredientInput from './Components/IngredientInput.jsx';
+// import Chart from PieChart.jsx
+// import DoughnutChart from './Components/ChartJS/PieChart.jsx';
 
 const App = () => (
+	<div className='App'>
+        <IngredientInput />
+		<RecipeContainer />
+		{/* <DoughnutChart /> */}
+	</div>
+);
 
+<<<<<<< HEAD
+export default App;
+=======
         <Grid container direction='column'>
             <Grid item xs={12}>
 							<Header />
@@ -28,3 +39,4 @@ const App = () => (
 )
 
 export default App
+>>>>>>> dev

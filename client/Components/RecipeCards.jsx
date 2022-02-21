@@ -15,6 +15,19 @@ import ChartContainer from './ChartContainer.jsx';
 
 const RecipeCard = (props) => {
 	return (
+<<<<<<< HEAD
+        <div className ="recipeCard">
+			<h1 className ="recipeName">{props.name}</h1>
+            <div className='recipeBody'>
+                <IngredientsList ingredients={props.ingredients}/>
+                <ChartContainer />
+            </div>
+            <div className='cardButtons'>
+                <button className='button'>EDIT</button>
+                <button className='button'>DELETE</button>
+            </div>
+        </div>
+=======
 		<Card>
 		<CardMedia
 			component="img"
@@ -45,6 +58,7 @@ const RecipeCard = (props) => {
       //           <button className='button'>DELETE</button>
       //       </div>
       //   </div>
+>>>>>>> dev
 
 		// <List/>
 		// <Chart/>

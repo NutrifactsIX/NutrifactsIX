@@ -46,7 +46,10 @@ module.exports = {
       directory: path.resolve(__dirname, 'dist')
     },
     proxy: {
-      'api': 'http://localhost:3000'
+      '/recipes/*': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      }
     }
   }
 };
