@@ -13,6 +13,21 @@ import IngredientInput from './Components/IngredientInput.jsx';
 // import DoughnutChart from './Components/ChartJS/PieChart.jsx';
 
 const App = () => (
+<<<<<<< HEAD
+	<Grid container direction='column'>
+		<Grid item xs={12}>
+			<Header />
+		</Grid>
+		<Grid container spacing={4} padding={4}>
+			<Grid item xs={12} md={4} position='sticky'>
+				<AddRecipe />
+			</Grid>
+			<Grid item xs={12} md={8}>
+				<RecipeContainer />
+			</Grid>
+		</Grid>
+	</Grid>
+=======
 	// <div className='App'>
   //       <IngredientInput />
 	// 	<RecipeContainer />
@@ -34,6 +49,7 @@ const App = () => (
 							</Grid>
 						</Grid>
         </Grid>
+>>>>>>> dev
 )
 
 export default App
