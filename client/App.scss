@@ -19,7 +19,17 @@ border: 1px solid black;
 flex-direction: column;
 justify-content: flex-start;
 align-content: space-around;
+border-radius: 5px;
 }
+
+.recipeName{
+  align-self: center;
+}
+
+.recipeBody{
+display: flex;
+}
+
 
 .button{
 display: flex;
@@ -45,10 +55,6 @@ width:50%;
 .ingredient {
 flex-grow: 1;
 height: 33%;
-}
-
-.recipeBody{
-display: flex;
 }
 
 .chartContainer{
