@@ -4,6 +4,8 @@ import recipesReducer from './recipes-slice';
 
 const store = configureStore({
   reducer: {
-    recipes: recipesReducer,
+    recipes: recipeReducer,
   }
 });
+
+export default store;

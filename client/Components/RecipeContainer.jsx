@@ -1,6 +1,8 @@
 //Import dependencies
 import React from 'react';
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { recipeActions } from '../store/recipes-slice';
 import '../App.scss';
 
 //Import Components
@@ -28,10 +30,14 @@ const ingredientData = [{
     },
 ];
 
-console.log(ingredientData)
+const addRecipeHandler = () => {
+    dispatch(counterActions.addRecipe(/* add payload here*/))
+};
 
 const RecipeContainer = () => {
     // const [recipeString, setterFunction] = useState(initialState)
+    const dispatch = useDispatch();
+    const recipes = useSelector((state) => state.recipes.recipes);
 
     return (
         <RecipeCard 
