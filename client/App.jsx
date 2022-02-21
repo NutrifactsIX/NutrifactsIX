@@ -6,15 +6,16 @@ import './App.scss';
 // import Head from './Components/Header.jsx'
 import RecipeContainer from './Components/RecipeContainer.jsx';
 // import Input from './Components/IngredientInput'
-
+import IngredientInput from './Components/IngredientInput.jsx';
+// import Chart from PieChart.jsx
+// import DoughnutChart from './Components/ChartJS/PieChart.jsx';
 
 const App = () => (
+	<div className='App'>
+        <IngredientInput />
+		<RecipeContainer />
+		{/* <DoughnutChart /> */}
+	</div>
+);
 
-        <div className="App">
-            {/* <Head/> */}
-            {/* <Input/> */}
-            <RecipeContainer/>
-        </div>
-)
-
-export default App
+export default App;

@@ -10,7 +10,7 @@ import ChartContainer from './ChartContainer.jsx';
 const RecipeCard = (props) => {
 	return (
         <div className ="recipeCard">
-			<h1 >{props.name}</h1>
+			<h1 className ="recipeName">{props.name}</h1>
             <div className='recipeBody'>
                 <IngredientsList ingredients={props.ingredients}/>
                 <ChartContainer />
