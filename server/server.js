@@ -11,7 +11,12 @@ const PORT = 3000;
 
 const recipeRouter = require(path.join(__dirname, '/routers/recipeRouter.js'));
 
-mongoose.connect('mongodb+srv://wobbegong:codesmith@cluster0.olekb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect('mongodb+srv://wobbegong:codesmith@cluster0.olekb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+// requiring in dotenv to use environment variable process.env.MONGO_URL from .env file
+// reminder: i listed .env in .gitignore file to avoid pushing secrets to github repo, so might have to have everyone set one up locally???
+require('dotenv').config();
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+
 mongoose.connection.once('open', () => {
   console.log('Connected to Database');
 });
