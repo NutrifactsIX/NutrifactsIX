@@ -38,13 +38,13 @@ const AddRecipe = () => {
 
 
 	return (
-		<Card variant='outlined' sx={{ p: 2 }}>
+		<Card variant='outlined' sx={{ p: 2, height: '75%' }} >
 
 			<FormControl style={{ width: '100%' }}>
 				<Typography variant='h4'>Add Recipe:</Typography>
 				<TextField
 					fullWidth required
-					label="Recipe Name"
+					label="Name"
 					id="fullWidth"
 					sx={{ my: 2 }}
 					value={newRecipeName}
@@ -53,7 +53,10 @@ const AddRecipe = () => {
 				<TextField
 					fullWidth required
 					label="Ingredients"
-					id="fullWidth" sx={{ mb: 2 }}
+					id="fullWidth" 
+					sx={{ mb: 2 }}
+					multiline={true} 
+					rows={11}
 					value={newIngredientsList}
 					onChange={(e) => ingredientsListHandler(e.target.value)}
 				/>
