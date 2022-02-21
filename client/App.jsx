@@ -17,9 +17,10 @@ const App = () => (
 							<Header />
 						</Grid>
 						<Grid container spacing={4} padding={4}>
-							<Grid item xs={12} md={4} position='sticky'>
-								<AddRecipe />
+							<Grid item xs={12} md={4} position='fixed' sx={{width: 1, height: '100vh'}}>
+								<AddRecipe/>
 							</Grid>
+							<Grid item xs={0} md={4}></Grid>
 							<Grid item xs={12} md={8}>
             		<RecipeContainer/>
 							</Grid>
