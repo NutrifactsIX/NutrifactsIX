@@ -27,12 +27,13 @@ export const deleteRecipe = createAsyncThunk(
 	'/recipes/deleteRecipeStatus',
 	async (id) => {
 		try {
-			fetch(`/recipes/${id}`, {
+			const deletedRecipe = fetch(`/recipes/${id}`, {
 				method: 'DELETE',
 				headers: {
 					'Content-Type': 'Application/JSON',
 				},
 			});
+			return deletedRecipe;
 		} catch (e) {
 			console.log(e);
 		}
@@ -43,13 +44,14 @@ export const addRecipe = createAsyncThunk(
 	'/recipes/addRecipeStatus',
 	async (body) => {
 		try {
-			fetch('/recipes', {
+			const addedRecipe = fetch('/recipes', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'Application/JSON',
 				},
 				body: JSON.stringify(body),
 			});
+			return addedRecipe;
 		} catch (e) {
 			console.log(e);
 		}
