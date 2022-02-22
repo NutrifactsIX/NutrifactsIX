@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, Input, TextField, FormHelperText, FormLabel, Typography, Button, Card } from '@mui/material'
+import { FormControl, InputLabel, Input, TextField, FormHelperText, FormLabel, Typography, Button, Card, Grid } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
@@ -30,28 +30,34 @@ const body = {
 
 
 	return (
-		<Card variant='outlined' sx={{ p: 2}} >
+		<Card variant='outlined' sx={{ p: 2}}>
 
-			<FormControl style={{ width: '100%' }}>
-				<Typography variant='h4'>Add Recipe:</Typography>
+			<FormControl sx={{width: '100%'}}>
+				<Box container sx={{display: 'flex'}}>
+
+				<Typography variant='h4'>add recipe here</Typography>
 				<TextField
-					fullWidth required
+					required
 					label="Name"
-					id="fullWidth"
-					sx={{ my: 2 }}
+					// id="fullWidth"
+					sx={{ mx: 2 }}
 					value={newRecipeName}
 					onChange={(e) => recipeNameHandler(e.target.value)}
 				/>
+				<Box sx={{ mr: 2, flexGrow: 1}}>
 				<TextField
-					fullWidth required
+					// fullWidth 
+					required
 					label="Ingredients"
-					id="fullWidth" 
-					sx={{ mb: 2 }}
-					multiline={true} 
-					rows={11}
+					// id="fullWidth" 
+					sx={{ width: '100%' }}
+					// flex={1}
+					// multiline={true} 
+					// rows={11}
 					value={newIngredientsList}
 					onChange={(e) => ingredientsListHandler(e.target.value)}
 				/>
+				</Box>
 				<Button type='submit' variant='outlined' onClick={() => dispatch(addRecipe(body))
 					.then(() => dispatch(recipeActions.setRecipeName('')))
 					.then(() => dispatch(recipeActions.setIngredientList('')))
@@ -59,6 +65,7 @@ const body = {
 					>
 						Add
 					</Button>
+				</Box>
 			</FormControl>
 		</Card>
 	)

@@ -12,7 +12,7 @@ const Header = () => {
 		<>
 			<AppBar position="fixed" color="primary">
 					<Typography variant="h1" textAlign='center'>
-						facts
+						wobbegong nutrition
 					</Typography>
 			</AppBar>
 		</>

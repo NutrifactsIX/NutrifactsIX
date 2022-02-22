@@ -5,26 +5,26 @@ import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const DoughnutChart = function (props) {
-    let fatGrams = 0;
-    let carbGrams = 0;
-    let proteinGrams = 0;
+const CarbChart = function (props) {
+    let totalCarbs = 0;
+    let dietaryFiber = 0;
+    let sugars = 0;
 
     for (const ingredient of props.ingredients) {
-        fatGrams += ingredient.nf_total_fat;
-        proteinGrams += ingredient.nf_protein;
-        carbGrams += ingredient.nf_total_carbohydrate;
+        totalCarbs += ingredient.nf_total_carbohydrate;
+        dietaryFiber += ingredient.nf_dietary_fiber;
+        sugars += ingredient.nf_sugars;
     }
-
+    
     const data = {
-        labels: ["Protein", "Carbohydrate", "Fat"],
+        labels: ["Remaining Carbohydrate", "Dietary Fiber", "Sugars"],
         datasets: [{
-            label: 'Macronutrients',
-            data: [((proteinGrams)*5), ((carbGrams)*5), ((fatGrams)*9)],
+            label: 'Total Carbohydrates',
+            data: [(totalCarbs-dietaryFiber-sugars), dietaryFiber, sugars],
             backgroundColor: [
-                '#f44336',
+                '#a5d6a7',
                 '#4caf50',
-                '#2196f3'
+                '#2e7d32'
             ],
             hoverOffset: 4
         }]
@@ -36,9 +36,9 @@ const DoughnutChart = function (props) {
     }
 
     return( 
-      <div style={divStyle}> 
+    <div style={divStyle}> 
         <Doughnut data={data}/>
-      </div>
+    </div>
     )
 };
 
@@ -56,4 +56,4 @@ const DoughnutChart = function (props) {
 // "nf_sugars": 0.37,
 // "nf_protein": 12.56,
 
-export default DoughnutChart;
+export default CarbChart;
