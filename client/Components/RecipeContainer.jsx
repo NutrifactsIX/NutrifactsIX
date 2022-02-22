@@ -1,71 +1,50 @@
 //Import dependencies
 import React from 'react';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import '../App.scss';
-import { Grid } from '@mui/material';
+import { Grid, Paper } from '@mui/material';
 
 //Import Components
 import RecipeCard from './RecipeCards.jsx';
+import { recipeActions, syncRecipes } from '../store/recipes-slice';
+import { useSelector, useDispatch } from 'react-redux';
+// import DoughnutChart from './Components/ChartJS/PieChart.jsx';
 
-const recipeName = 'Pasta'
-const ingredientData = [{
-    "food_name": "eggs",
-    "serving_qty": 1,
-}, {
-        "food_name": "bacon",
-        "serving_qty": 2,
-    }, {
-        "food_name": "cheese",
-        "serving_qty": 2,
-    }, {
-        "food_name": "toast",
-        "serving_qty": 1,
-    }, {
-        "food_name": "ketchup",
-        "serving_qty": 2,
-    }, {
-        "food_name": "lettuce",
-        "serving_qty": 2,
-    },
-];
-
-console.log(ingredientData)
 
 const RecipeContainer = () => {
-    // const [recipeString, setterFunction] = useState(initialState)
+	const recipes = useSelector((state) => state.recipes.recipes);
+	const dispatch = useDispatch();
 
-    return (
-			<Grid container direction="column" spacing={4}>
-				<Grid item>
+	useEffect(() => {
+		dispatch(syncRecipes())
+	}, []);
 
-        <RecipeCard 
-        className ="recipeContainer"
-        name={recipeName}
-        ingredients={ingredientData}
-        />
-				</Grid>
-				<Grid item>
+	const recipeList = [];
 
-        <RecipeCard 
-        className ="recipeContainer"
-        name={recipeName}
-        ingredients={ingredientData}
-        />
-				</Grid>
-				<Grid item>
+	for (const recipe of recipes) {
+		const name = recipe.name;
+		const query = recipe.query;
+		const ingredientList = JSON.parse(recipe.data);
+		// for (const ingredient of ingredientList) {
+		// 	const { food_name, serving_qty, serving_unit, nf_calories, nf_protein, nf_total_carbohydrates, nf_total_fat} = ingredient;
+		// 	console.log(ingredient)
+		// 	const thumbUrl = ingredient.photo.thumb;
+		// 	const highResUrl = ingredient.photo.highres;
+		// }
+		recipeList.push(
+		<Grid key={recipe._id} item>
+			<RecipeCard  id={recipe._id} name={name} ingredientList={ingredientList} query={query}/>
+		</Grid>)
+	}
 
-        <RecipeCard 
-        className ="recipeContainer"
-        name={recipeName}
-        ingredients={ingredientData}
-        />
-				</Grid>
-			</Grid>
-    )
-}
+	return (
+		<Grid container direction='column' spacing={4} sx={{marginTop: '200px'}} >
+				{recipeList}
+		</Grid>
+	);
+};
 
 export default RecipeContainer;
-
 
 /* 
 data.food => array of objects

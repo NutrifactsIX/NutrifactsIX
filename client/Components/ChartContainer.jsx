@@ -1,15 +1,28 @@
 //Import dependencies
 import React from 'react';
+import {Grid} from '@mui/material';
 
 //Import Components
-import Charts from './Charts.jsx';
+import DoughnutChart from './ChartJS/PieChart.jsx';
+import FatDoughnut from './ChartJS/FatDoughnut.jsx';
+import CarbDoughnut from './ChartJS/CarbDoughnut.jsx'
 
-const ChartContainer = () => (
+const ChartContainer = function(props) {
 
-    <div className="chartContainer">
-        <Charts/>
-    </div>
+  return (
+    <Grid container className="chartContainer" spacing={2} padding={3}>
+      <Grid item xs={4} align='center'>
+        <DoughnutChart ingredients={props.ingredientList} />
+      </Grid>
+      <Grid item xs={4} align='center'>
+        <FatDoughnut ingredients={props.ingredientList} />
+      </Grid>
+      <Grid item xs={4} align='center'>
+        <CarbDoughnut ingredients={props.ingredientList} />
+      </Grid>
+    </Grid>
+  )
 
-);
+};
 
 export default ChartContainer;

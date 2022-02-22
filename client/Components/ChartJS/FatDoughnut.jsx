@@ -5,26 +5,26 @@ import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const DoughnutChart = function (props) {
+const FatChart = function (props) {
     let fatGrams = 0;
-    let carbGrams = 0;
-    let proteinGrams = 0;
+    let satFat = 0;
+    let cholesterol = 0;
 
     for (const ingredient of props.ingredients) {
         fatGrams += ingredient.nf_total_fat;
-        proteinGrams += ingredient.nf_protein;
-        carbGrams += ingredient.nf_total_carbohydrate;
+        satFat += ingredient.nf_saturated_fat;
+        cholesterol += ingredient.nf_cholesterol;
     }
 
     const data = {
-        labels: ["Protein", "Carbohydrate", "Fat"],
+        labels: ["Remaining Total Fat", "Saturated Fat", "Cholesterol"],
         datasets: [{
-            label: 'Macronutrients',
-            data: [((proteinGrams)*5), ((carbGrams)*5), ((fatGrams)*9)],
+            label: 'Fat by Weight',
+            data: [(fatGrams - satFat - (cholesterol/1000)), satFat, ((cholesterol)/1000)],
             backgroundColor: [
-                '#f44336',
-                '#4caf50',
-                '#2196f3'
+                '#90caf9',
+                '#2196f3',
+                '#1565c0'
             ],
             hoverOffset: 4
         }]
@@ -36,9 +36,9 @@ const DoughnutChart = function (props) {
     }
 
     return( 
-      <div style={divStyle}> 
+    <div style={divStyle}> 
         <Doughnut data={data}/>
-      </div>
+    </div>
     )
 };
 
@@ -56,4 +56,4 @@ const DoughnutChart = function (props) {
 // "nf_sugars": 0.37,
 // "nf_protein": 12.56,
 
-export default DoughnutChart;
+export default FatChart;
