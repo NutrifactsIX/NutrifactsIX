@@ -1,37 +1,48 @@
 //Import dependencies
 import React from 'react';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import '../App.scss';
-import { Grid } from '@mui/material';
+import { Grid, Paper } from '@mui/material';
 
 //Import Components
 import RecipeCard from './RecipeCards.jsx';
+import { recipeActions, syncRecipes } from '../store/recipes-slice';
+import { useSelector, useDispatch } from 'react-redux';
 
-console.log(ingredientData)
 
 const RecipeContainer = () => {
+	const recipes = useSelector((state) => state.recipes.recipes);
+	const dispatch = useDispatch();
 
-  return (
-    <Grid container direction="column" spacing={4}>
+	useEffect(() => {
+		dispatch(syncRecipes())
+	}, []);
 
-      <Grid item>
-        <RecipeCard/>
-      </Grid>
+	const recipeList = [];
 
-      <Grid item>
-        <RecipeCard/>
-      </Grid>
+	for (const recipe of recipes) {
+		const name = recipe.name;
+		const query = recipe.query;
+		const ingredientList = JSON.parse(recipe.data);
+		// for (const ingredient of ingredientList) {
+		// 	const { food_name, serving_qty, serving_unit, nf_calories, nf_protein, nf_total_carbohydrates, nf_total_fat} = ingredient;
+		// 	console.log(ingredient)
+		// 	const thumbUrl = ingredient.photo.thumb;
+		// 	const highResUrl = ingredient.photo.highres;
+		// }
+		recipeList.push(<RecipeCard key={recipe._id} id={recipe._id} name={name} ingredientList={ingredientList} query={query}/>)
+	}
 
-      <Grid item>
-        <RecipeCard/>
-      </Grid>
-
-    </Grid>
-  )
-}
+	return (
+		<Grid container direction='column' spacing={4}>
+				<Grid item>
+					{recipeList}
+			</Grid>
+		</Grid>
+	);
+};
 
 export default RecipeContainer;
-
 
 /* 
 data.food => array of objects

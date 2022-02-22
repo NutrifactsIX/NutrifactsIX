@@ -10,12 +10,10 @@ import Typography from '@mui/material/Typography'
 const Header = () => {
 	return (
 		<>
-			<AppBar position="fixed" color="primary">
-				<Toolbar>
-					<Typography variant="h6">
-						Facts
+			<AppBar position="static" color="primary">
+					<Typography variant="h1" textAlign='center'>
+						facts
 					</Typography>
-				</Toolbar>
 			</AppBar>
 		</>
 	)

@@ -3,37 +3,29 @@ import { Box } from '@mui/system'
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { recipeActions } from '../store/recipes-slice';
+import { addRecipe, syncRecipes } from '../store/recipes-slice';
 
 const AddRecipe = () => {
 
 	const dispatch = useDispatch();
 	const newRecipeName = useSelector((state) => state.recipes.newRecipeName);
-	const newIngredientsList = useSelector((state) => state.recipes.newIngredientsList)
+	const newIngredientsList = useSelector((state) => state.recipes.newIngredientsList);
 
 	const recipeNameHandler = (value) => {
-		dispatch(recipeActions.setRecipeName(value))
+		dispatch(recipeActions.setRecipeName(value));
 	};
 	const ingredientsListHandler = (value) => {
-		dispatch(recipeActions.setIngredientList(value))
+		dispatch(recipeActions.setIngredientList(value));
 	};
 
-	const submitHandler = () => {
-		fetch('/recipes', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'Application/JSON'
-			},
-			body: JSON.stringify({ name: newRecipeName, query: newIngredientsList })
-		})
-			.then(() => {
-				console.log('MADE THE POST REQUEST!');
-				clearFields()
-			})
-	};
+const body = {
+					name: newRecipeName,
+					query: newIngredientsList,
+				}
 
 	const clearFields = () => {
-		dispatch(recipeActions.setRecipeName(''))
-		dispatch(recipeActions.setIngredientList(''))
+		dispatch(recipeActions.setRecipeName(''));
+		dispatch(recipeActions.setIngredientList(''));
 	}
 
 
@@ -60,7 +52,13 @@ const AddRecipe = () => {
 					value={newIngredientsList}
 					onChange={(e) => ingredientsListHandler(e.target.value)}
 				/>
-				<Button type='submit' variant='outlined' onClick={submitHandler}>Add</Button>
+				<Button type='submit' variant='outlined' onClick={() => dispatch(addRecipe(body))
+					.then(() => dispatch(recipeActions.setRecipeName('')))
+					.then(() => dispatch(recipeActions.setIngredientList('')))
+					.then(() => dispatch(syncRecipes()))}
+					>
+						Add
+					</Button>
 			</FormControl>
 		</Card>
 	)
