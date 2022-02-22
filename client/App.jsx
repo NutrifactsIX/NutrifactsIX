@@ -12,7 +12,6 @@ const App = () => (
 		<Grid item xs={12}>
 			<Header />
 		</Grid>
-		{/* <Grid container spacing={4} padding={4} sx={{mt: 8}}> */}
 			<Grid
 				item
 				xs={12}
@@ -20,13 +19,9 @@ const App = () => (
 				position='fixed'
 				sx={{ width: 1, height: '100vh', marginTop: '125px', marginBottom: '25px' }}
 			>
-				<AddRecipe/>
+			<AddRecipe/>
 			</Grid>
-			{/* <Grid item xs={0} md={4}></Grid> */}
-			{/* <Grid item xs={12}> */}
-				<RecipeContainer />
-			{/* </Grid> */}
-		{/* </Grid> */}
+			<RecipeContainer />
 	</Grid>
 );
 
