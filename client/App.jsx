@@ -16,7 +16,7 @@ const App = () => (
 		<Grid item xs={12}>
 			<Header />
 		</Grid>
-		<Grid container spacing={4} padding={4}>
+		<Grid container spacing={4} padding={4} sx={{mt: 8}}>
 			<Grid
 				item
 				xs={12}

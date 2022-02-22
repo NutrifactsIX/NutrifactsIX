@@ -19,7 +19,7 @@ const RecipeCard = (props) => {
 	const dispatch = useDispatch()
 
 	return (
-		<Card sx={{ my: 2 }}>
+		<Card sx={{ mb: 2 }}>
 			<CardMedia
 				component='img'
 				alt='green iguana'

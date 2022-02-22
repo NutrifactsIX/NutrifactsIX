@@ -34,7 +34,7 @@ const RecipeContainer = () => {
 	}
 
 	return (
-		<Grid container direction='column' spacing={4}>
+		<Grid container direction='column' spacing={4} >
 				<Grid item>
 					{recipeList}
 			</Grid>

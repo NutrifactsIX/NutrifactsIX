@@ -30,7 +30,7 @@ const body = {
 
 
 	return (
-		<Card variant='outlined' sx={{ p: 2, height: '75%' }} >
+		<Card variant='outlined' sx={{ p: 2}} >
 
 			<FormControl style={{ width: '100%' }}>
 				<Typography variant='h4'>Add Recipe:</Typography>

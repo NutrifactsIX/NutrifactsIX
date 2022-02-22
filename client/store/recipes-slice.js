@@ -16,7 +16,7 @@ export const syncRecipes = createAsyncThunk(
 			console.log('in the syncRecipes Thunk function');
 			const response = await axios.get('/recipes');
 			// console.log('Here is your data: ', response);
-			return response.data;
+			return response.data.reverse();
 		} catch (e) {
 			console.log(e);
 		}
