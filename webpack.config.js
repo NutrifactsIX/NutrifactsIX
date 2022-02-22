@@ -23,7 +23,15 @@ module.exports = {
         use: [
           'style-loader', 'css-loader', 'sass-loader',
         ]
-      }
+      },
+      {
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
     ]
   },
   plugins:[
@@ -38,7 +46,10 @@ module.exports = {
       directory: path.resolve(__dirname, 'dist')
     },
     proxy: {
-      'api': 'http://localhost:3000'
+      '/recipes/*': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      }
     }
   }
 };
