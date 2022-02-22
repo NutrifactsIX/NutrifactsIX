@@ -23,6 +23,27 @@ export const syncRecipes = createAsyncThunk(
 	}
 );
 
+export const editRecipe = createAsyncThunk(
+	'/recipes/editRecipeStatus',
+	async (editBody) => {
+		try {
+			console.log('editBody',editBody);
+				console.log("in the editRecipes Thunk function");
+			const editRecipe = fetch('/recipes', {
+        method: "PUT",
+        headers: {
+          "Content-Type": "Application/JSON",
+        },
+        body: JSON.stringify(editBody),
+      });
+						console.log("out of the editRecipes Thunk function", editRecipe);
+			return editRecipe.status;
+		} catch (e) {
+			console.log(e);
+		}
+	}
+);
+
 export const deleteRecipe = createAsyncThunk(
 	'/recipes/deleteRecipeStatus',
 	async (id) => {
@@ -33,7 +54,7 @@ export const deleteRecipe = createAsyncThunk(
 					'Content-Type': 'Application/JSON',
 				},
 			});
-			return deletedRecipe;
+			return deletedRecipe.status;
 		} catch (e) {
 			console.log(e);
 		}
@@ -66,6 +87,7 @@ const recipeReducer = createSlice({
 		//   state.recipes.push(action.payload)
 		// },
 		setRecipes(state, action) {
+			console.log(action.payload);
 			state.recipes = action.payload;
 		},
 		setRecipeName(state, action) {

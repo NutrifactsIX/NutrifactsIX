@@ -15,7 +15,7 @@ router.get('/', recipeController.getRecipes, (req, res) => {
 })
 
 //router.patch
-router.patch('/:id', recipeController.editRecipe, (req, res) => { 
+router.put('/', recipeController.editRecipe, (req, res) => { 
     return res.status(200).json(res.locals.updatedRecipe) 
 })
 
