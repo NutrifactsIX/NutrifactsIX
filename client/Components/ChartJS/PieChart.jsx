@@ -1,18 +1,25 @@
 //Import dependencies
-import React from 'react';
+// import React from 'react';
 // import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
 const data = {
     labels: ["Fat", "Carbohydrate", "Protein"],
     datasets: [{
-        data: [9.51, 0.72, 12.56]
+        label: 'Macronutrients',
+        data: [9.51, 0.72, 12.56],
+        backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)'
+        ],
+        hoverOffset: 4
     }]
 };
 
 const DoughnutChart = () => {
     return (
-    <div>
+    <div style={{width: '500px', margin: '5 auto'}}>
         <Doughnut data={data}/>
         <h1>Working</h1>
     </div>
