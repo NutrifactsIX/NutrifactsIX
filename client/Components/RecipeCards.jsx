@@ -1,4 +1,5 @@
 //Import dependencies
+import { FormControl, InputLabel, Input, TextField, FormHelperText, FormLabel,} from '@mui/material'
 import React, { useState } from 'react';
 import '../App.scss';
 import Card from '@mui/material/Card';
@@ -7,7 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { deleteRecipe, syncRecipes } from '../store/recipes-slice';
+import { editRecipe, deleteRecipe, syncRecipes } from '../store/recipes-slice';
 import { useDispatch } from 'react-redux';
 
 //import components
@@ -17,9 +18,32 @@ import ChartContainer from './ChartContainer.jsx';
 
 const RecipeCard = (props) => {
 	const dispatch = useDispatch()
+	const [isEditing, setIsEditing] = useState(false);
+	const [editQuery, setQuery] = useState(props.query);
+	const [editRecipeName, setEditRecipeName] = useState(props.name);
 
-	return (
-		<Card sx={{ mb: 2 }}>
+	const editBody = {
+		id: props.id,
+		name: editRecipeName,
+		query: editQuery
+	};
+
+	const editRecipeNameHandler = (name) => {
+		setEditRecipeName(name)
+	}
+	const editQueryHandler = (query) => {
+		setQuery(query)
+	}
+
+	const editBtnHandler = () => {
+		setIsEditing(true)
+	};
+
+	const submitBtnHandler = () => {
+		setIsEditing(false)
+	}
+
+	const renderCard = <Card sx={{ mb: 2 }}>
 			<CardMedia
 				component='img'
 				alt='green iguana'
@@ -36,14 +60,69 @@ const RecipeCard = (props) => {
 				/>
 			</CardContent>
 			<CardActions>
-				<Button variant='outlined' size='large'>
+				<Button variant='outlined' size='large' onClick={editBtnHandler}>
 					Edit
 				</Button>
 				<Button variant='outlined' size='large' onClick={() => dispatch(deleteRecipe(props.id)).then(() => dispatch(syncRecipes()))}>
 					Delete
 				</Button>
 			</CardActions>
-		</Card>
+		</Card>;
+
+  const renderEditCard = (
+    <Card sx={{ mb: 2 }}>
+      <CardMedia
+        component="img"
+        alt="green iguana"
+        height="140"
+        image="https://www.greatschools.org/gk/wp-content/uploads/2016/04/Tables-charts-graphs.jpg"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          <TextField
+            fullWidth
+            required
+            label="Name"
+            id="fullWidth"
+            sx={{ my: 2 }}
+            value={editRecipeName}
+            onChange={(e) => editRecipeNameHandler(e.target.value)}
+          />
+        </Typography>
+
+        <TextField
+          fullWidth
+          required
+          label="Ingredients"
+          id="fullWidth"
+          sx={{ mb: 2 }}
+          multiline={true}
+          rows={11}
+          value={editQuery}
+          onChange={(e) => editQueryHandler(e.target.value)}
+        />
+      </CardContent>
+      <CardActions>
+        <Button variant="outlined" size="large" onClick={() => dispatch(editRecipe(editBody)).then(() => dispatch(syncRecipes())).then(() => submitBtnHandler())}>
+          Submit
+        </Button>
+        <Button
+          variant="outlined"
+          size="large"
+          onClick={() =>
+            dispatch(deleteRecipe(props.id)).then(() => dispatch(syncRecipes()))
+          }
+        >
+          Delete
+        </Button>
+      </CardActions>
+    </Card>
+  );;
+
+  return (
+		<div>
+			{isEditing ? renderEditCard : renderCard}
+		</div>
 
 		//   <div className ="recipeCard"></div>
 		// <h1 >{props.name}</h1>
