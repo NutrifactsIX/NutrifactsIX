@@ -11,11 +11,9 @@ const Header = () => {
 	return (
 		<>
 			<AppBar position="fixed" color="primary">
-				<Toolbar>
-					<Typography variant="h6">
-						Facts
+					<Typography variant="h1" textAlign='center'>
+						facts
 					</Typography>
-				</Toolbar>
 			</AppBar>
 		</>
 	)

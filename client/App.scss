@@ -1,71 +1,77 @@
-.App{
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-content: space-around;
-}
+// .App{
+// display: flex;
+// flex-direction: column;
+// justify-content: center;
+// align-content: space-around;
+// }
 
-.recipeContainer{
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-content: space-around;
-border-color: black;
-}
+// .recipeContainer{
+// display: flex;
+// flex-direction: column;
+// justify-content: center;
+// align-content: space-around;
+// border-color: black;
+// }
 
-.recipeCard{
-display: flex;
-border: 1px solid black;
-flex-direction: column;
-justify-content: flex-start;
-align-content: space-around;
-}
+// .recipeCard{
+// display: flex;
+// border: 1px solid black;
+// flex-direction: column;
+// justify-content: flex-start;
+// align-content: space-around;
+// border-radius: 5px;
+// }
 
-.button{
-display: flex;
-flex-direction: row;
-justify-content: flex-start;
-align-content: space-around;
-}
+// .recipeName{
+//   align-self: center;
+// }
 
-.ingredientContainer{
-border: 1px solid black;
-border-radius: 5px;
-width: 50%;
-}
+// .recipeBody{
+// display: flex;
+// }
 
-.ingredientList{
-display: flex;
-flex-direction: column;
-flex-wrap: wrap;
-height:100px;
-width:50%;
-}
 
-.ingredient {
-flex-grow: 1;
-height: 33%;
-}
+// .button{
+// display: flex;
+// flex-direction: row;
+// justify-content: flex-start;
+// align-content: space-around;
+// }
 
-.recipeBody{
-display: flex;
-}
+// .ingredientContainer{
+// border: 1px solid black;
+// border-radius: 5px;
+// width: 50%;
+// }
 
-.chartContainer{
-border: 1px solid black;
-border-radius: 5px;
-width: 50%;
-}
-
-.charts{
-display: flex;
-flex-direction: column;
+// .ingredientList{
+// display: flex;
+// flex-direction: column;
 // flex-wrap: wrap;
 // height:100px;
-}
+// width:50%;
+// }
 
-.cardButtons {
-  display:flex;
-  flex-direction: row;
-  justify-content:flex-end
-}
+// .ingredient {
+// flex-grow: 1;
+// height: 33%;
+// }
+
+// .chartContainer{
+// border: 1px solid black;
+// border-radius: 5px;
+// width: 50%;
+// }
+
+// .charts{
+// display: flex;
+// flex-direction: column;
+// // flex-wrap: wrap;
+// // height:100px;
+// }
+
+// .cardButtons {
+//   display:flex;
+//   flex-direction: row;
+//   justify-content:flex-end
+// }

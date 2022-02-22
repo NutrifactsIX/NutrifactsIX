@@ -6,9 +6,9 @@ import Charts from './Charts.jsx';
 
 const ChartContainer = () => (
 
-    <div className="chartContainer">
-        <Charts/>
-    </div>
+  <div className="chartContainer">
+    <Charts />
+  </div>
 
 );
 
