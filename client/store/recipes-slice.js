@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-const axios = require('axios');
 
 const initialRecipesState = {
   recipes: [],
@@ -14,9 +13,11 @@ export const syncRecipes = createAsyncThunk(
   async () => {
     try {
       console.log('in the syncRecipes Thunk function');
-      const response = await axios.get('/recipes');
-      // console.log('Here is your data: ', response);
-      return response.data.reverse();
+      const responseJSON = await fetch('/recipes');
+      const response = await responseJSON.json();
+      
+      console.log('Here is your data: ', response);
+      return response.reverse();
     } catch (e) {
       console.log(e);
     }
@@ -54,6 +55,7 @@ export const deleteRecipe = createAsyncThunk(
           'Content-Type': 'Application/JSON',
         },
       });
+      console.log(deletedRecipe);
       return deletedRecipe.status;
     } catch (e) {
       console.log(e);
@@ -65,7 +67,7 @@ export const addRecipe = createAsyncThunk(
   '/recipes/addRecipeStatus',
   async (body) => {
     try {
-      const addedRecipe = fetch('/recipes', {
+      const addedRecipe = await fetch('/recipes', {
         method: 'POST',
         headers: {
           'Content-Type': 'Application/JSON',
