@@ -55,6 +55,7 @@ export const deleteRecipe = createAsyncThunk(
           'Content-Type': 'Application/JSON',
         },
       });
+      console.log(deletedRecipe);
       return deletedRecipe.status;
     } catch (e) {
       console.log(e);
@@ -66,7 +67,7 @@ export const addRecipe = createAsyncThunk(
   '/recipes/addRecipeStatus',
   async (body) => {
     try {
-      const addedRecipe = fetch('/recipes', {
+      const addedRecipe = await fetch('/recipes', {
         method: 'POST',
         headers: {
           'Content-Type': 'Application/JSON',
