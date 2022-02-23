@@ -1,28 +1,41 @@
 //import dependencies
-import React from 'react';
+import React, {useState, useMemo} from 'react';
 
 //import components
 import Header from './Components/Header.jsx';
 import RecipeContainer from './Components/RecipeContainer.jsx';
-import AddRecipe from './Components/AddRecipe.jsx';
 import { Grid } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const App = () => (
-	<Grid container direction='column'>
-		<Grid item xs={12}>
-			<Header />
-		</Grid>
-			<Grid
-				item
-				xs={12}
-				// md={4}
-				position='fixed'
-				sx={{ width: 1, height: '100vh', marginTop: '125px', marginBottom: '25px' }}
-			>
-			<AddRecipe/>
-			</Grid>
-			<RecipeContainer />
-	</Grid>
-);
+const App = () => {
+  //Sets light or dark mode
+  const [mode, setMode] = useState('light');
+  const colorMode = useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode(prevMode => prevMode === 'light' ? 'dark' : 'light');
+      },
+    }), [],
+  );
+
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode,
+        },
+      }), [mode],
+  );
+  
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Grid container direction='column'>
+        <Header {...{colorMode}}/>
+        <RecipeContainer />
+      </Grid>
+    </ThemeProvider>
+  );};
 
 export default App;

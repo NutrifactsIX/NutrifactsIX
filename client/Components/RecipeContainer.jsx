@@ -12,36 +12,38 @@ import { useSelector, useDispatch } from 'react-redux';
 
 
 const RecipeContainer = () => {
-	const recipes = useSelector((state) => state.recipes.recipes);
-	const dispatch = useDispatch();
+  const recipes = useSelector((state) => state.recipes.recipes);
+  const dispatch = useDispatch();
 
-	useEffect(() => {
-		dispatch(syncRecipes())
-	}, []);
+  useEffect(() => {
+    dispatch(syncRecipes());
+  }, []);
 
-	const recipeList = [];
+  const recipeList = [];
 
-	for (const recipe of recipes) {
-		const name = recipe.name;
-		const query = recipe.query;
-		const ingredientList = JSON.parse(recipe.data);
-		// for (const ingredient of ingredientList) {
-		// 	const { food_name, serving_qty, serving_unit, nf_calories, nf_protein, nf_total_carbohydrates, nf_total_fat} = ingredient;
-		// 	console.log(ingredient)
-		// 	const thumbUrl = ingredient.photo.thumb;
-		// 	const highResUrl = ingredient.photo.highres;
-		// }
-		recipeList.push(
-		<Grid key={recipe._id} item>
-			<RecipeCard  id={recipe._id} name={name} ingredientList={ingredientList} query={query}/>
-		</Grid>)
-	}
+  for (const recipe of recipes) {
+    const name = recipe.name;
+    const query = recipe.query;
+    const ingredientList = JSON.parse(recipe.data);
+    // for (const ingredient of ingredientList) {
+    // 	const { food_name, serving_qty, serving_unit, nf_calories, nf_protein, nf_total_carbohydrates, nf_total_fat} = ingredient;
+    // 	console.log(ingredient)
+    // 	const thumbUrl = ingredient.photo.thumb;
+    // 	const highResUrl = ingredient.photo.highres;
+    // }
+    recipeList.push(
+      <Grid key={recipe._id} item>
+        <RecipeCard  id={recipe._id} name={name} ingredientList={ingredientList} query={query} />
+      </Grid>);
+  }
 
-	return (
-		<Grid container direction='column' spacing={4} sx={{marginTop: '200px'}} >
-				{recipeList}
-		</Grid>
-	);
+  return (
+    <Grid container direction='column' spacing={4} 
+      sx={{marginTop: '30px', padding: '30px'}} 
+    >
+      {recipeList}
+    </Grid>
+  );
 };
 
 export default RecipeContainer;

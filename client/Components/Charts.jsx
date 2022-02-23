@@ -5,13 +5,13 @@ import React from 'react';
 
 // ChartJS.register(ArcElement, Tooltip, Legend);
 {
-	/* <Doughnut data={...} /> */
+  /* <Doughnut data={...} /> */
 }
 
 const Chart = () => (
-	<div className="charts">
-		{/* <img src={thumb} alt=''  /> */}
-	</div>
+  <div className="charts">
+    {/* <img src={thumb} alt=''  /> */}
+  </div>
 );
 
 export default Chart;
