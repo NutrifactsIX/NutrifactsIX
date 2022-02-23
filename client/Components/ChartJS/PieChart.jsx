@@ -6,40 +6,40 @@ import { Doughnut } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const DoughnutChart = function (props) {
-    let fatGrams = 0;
-    let carbGrams = 0;
-    let proteinGrams = 0;
+  let fatGrams = 0;
+  let carbGrams = 0;
+  let proteinGrams = 0;
 
-    for (const ingredient of props.ingredients) {
-        fatGrams += ingredient.nf_total_fat;
-        proteinGrams += ingredient.nf_protein;
-        carbGrams += ingredient.nf_total_carbohydrate;
-    }
+  for (const ingredient of props.ingredients) {
+    fatGrams += ingredient.nf_total_fat;
+    proteinGrams += ingredient.nf_protein;
+    carbGrams += ingredient.nf_total_carbohydrate;
+  }
 
-    const data = {
-        labels: ["Protein", "Carbohydrate", "Fat"],
-        datasets: [{
-            label: 'Macronutrients',
-            data: [((proteinGrams)*5), ((carbGrams)*5), ((fatGrams)*9)],
-            backgroundColor: [
-                '#f44336',
-                '#4caf50',
-                '#2196f3'
-            ],
-            hoverOffset: 4
-        }]
-    };
+  const data = {
+    labels: ['Protein', 'Carbohydrate', 'Fat'],
+    datasets: [{
+      label: 'Macronutrients',
+      data: [((proteinGrams) * 5), ((carbGrams) * 5), ((fatGrams) * 9)],
+      backgroundColor: [
+        '#f44336',
+        '#4caf50',
+        '#2196f3'
+      ],
+      hoverOffset: 4
+    }]
+  };
 
-    const divStyle = {
-        width: '300px',
-        height: '300px'
-    }
+  const divStyle = {
+    width: '300px',
+    height: '300px'
+  };
 
-    return( 
-      <div style={divStyle}> 
-        <Doughnut data={data}/>
-      </div>
-    )
+  return( 
+    <div style={divStyle}> 
+      <Doughnut data={data}/>
+    </div>
+  );
 };
 
 // "food_name": "eggs",

@@ -5,7 +5,7 @@ import {Grid} from '@mui/material';
 //Import Components
 import DoughnutChart from './ChartJS/PieChart.jsx';
 import FatDoughnut from './ChartJS/FatDoughnut.jsx';
-import CarbDoughnut from './ChartJS/CarbDoughnut.jsx'
+import CarbDoughnut from './ChartJS/CarbDoughnut.jsx';
 
 const ChartContainer = function(props) {
 
@@ -21,7 +21,7 @@ const ChartContainer = function(props) {
         <CarbDoughnut ingredients={props.ingredientList} />
       </Grid>
     </Grid>
-  )
+  );
 
 };
 

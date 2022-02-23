@@ -6,40 +6,40 @@ import { Doughnut } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const FatChart = function (props) {
-    let fatGrams = 0;
-    let satFat = 0;
-    let cholesterol = 0;
+  let fatGrams = 0;
+  let satFat = 0;
+  let cholesterol = 0;
 
-    for (const ingredient of props.ingredients) {
-        fatGrams += ingredient.nf_total_fat;
-        satFat += ingredient.nf_saturated_fat;
-        cholesterol += ingredient.nf_cholesterol;
-    }
+  for (const ingredient of props.ingredients) {
+    fatGrams += ingredient.nf_total_fat;
+    satFat += ingredient.nf_saturated_fat;
+    cholesterol += ingredient.nf_cholesterol;
+  }
 
-    const data = {
-        labels: ["Remaining Total Fat", "Saturated Fat", "Cholesterol"],
-        datasets: [{
-            label: 'Fat by Weight',
-            data: [(fatGrams - satFat - (cholesterol/1000)), satFat, ((cholesterol)/1000)],
-            backgroundColor: [
-                '#90caf9',
-                '#2196f3',
-                '#1565c0'
-            ],
-            hoverOffset: 4
-        }]
-    };
+  const data = {
+    labels: ['Remaining Total Fat', 'Saturated Fat', 'Cholesterol'],
+    datasets: [{
+      label: 'Fat by Weight',
+      data: [(fatGrams - satFat - (cholesterol / 1000)), satFat, ((cholesterol) / 1000)],
+      backgroundColor: [
+        '#90caf9',
+        '#2196f3',
+        '#1565c0'
+      ],
+      hoverOffset: 4
+    }]
+  };
 
-    const divStyle = {
-        width: '300px',
-        height: '300px'
-    }
+  const divStyle = {
+    width: '300px',
+    height: '300px'
+  };
 
-    return( 
+  return( 
     <div style={divStyle}> 
-        <Doughnut data={data}/>
+      <Doughnut data={data}/>
     </div>
-    )
+  );
 };
 
 // "food_name": "eggs",
