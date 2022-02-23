@@ -30,7 +30,7 @@ export const editRecipe = createAsyncThunk(
     try {
       console.log('editBody',editBody);
       console.log('in the editRecipes Thunk function');
-      const editRecipe = fetch('/recipes', {
+      const editRecipe = await fetch('/recipes', {
         method: 'PUT',
         headers: {
           'Content-Type': 'Application/JSON',
@@ -49,7 +49,7 @@ export const deleteRecipe = createAsyncThunk(
   '/recipes/deleteRecipeStatus',
   async (id) => {
     try {
-      const deletedRecipe = fetch(`/recipes/${id}`, {
+      const deletedRecipe = await fetch(`/recipes/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'Application/JSON',
@@ -73,6 +73,7 @@ export const addRecipe = createAsyncThunk(
         },
         body: JSON.stringify(body),
       });
+      console.log('added recipe', addedRecipe);
       return addedRecipe;
     } catch (e) {
       console.log(e);

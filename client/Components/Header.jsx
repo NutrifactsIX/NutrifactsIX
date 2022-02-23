@@ -1,8 +1,9 @@
 //Import dependencies
 import { useSelector, useDispatch } from 'react-redux';
 import { changeTheme } from '../store/users-slice';
-import React from 'react';
+import React, {useState} from 'react';
 
+import MenuDrawer from './MenuDrawer.jsx';
 //Import Components
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,15 +13,24 @@ import AddRecipe from './AddRecipe.jsx';
 import IconButton from '@mui/material/IconButton';
 import Switch from '@mui/material/Switch';
 import Button from '@mui/material/Button';
-import { Box } from '@mui/material';
 
 //React Component
 const Header = () => {
+  const [drawerState, setDrawerState] = useState(false);
   const dispatch = useDispatch();
+
+  const toggleDrawer = (open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    setDrawerState(open);
+  };
+
   return (
     <AppBar position="static"
       sx={{ position: 'fixed', zIndex: 10 }}
     >
+      <MenuDrawer {...{toggleDrawer, drawerState}}/>
       <Toolbar>
         <IconButton
           size="large"
@@ -28,6 +38,7 @@ const Header = () => {
           color="inherit"
           aria-label="open drawer"
           sx={{ mr: 2 }}
+          onClick={toggleDrawer(true)}
         >
           <MenuIcon />
         </IconButton>

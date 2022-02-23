@@ -42,6 +42,13 @@ const AddRecipe = () => {
   const newRecipeName = useSelector((state) => state.recipes.newRecipeName);
   const newIngredientsList = useSelector((state) => state.recipes.newIngredientsList);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    return dispatch(addRecipe(body))
+      .then(() => dispatch(recipeActions.clearSearchFields()))
+      .then(() => dispatch(syncRecipes()));
+  };
+
   const body = {
     name: newRecipeName,
     query: newIngredientsList,
@@ -49,23 +56,21 @@ const AddRecipe = () => {
 
   return(
     <Box component="form" sx={{flexGrow: 1, display: 'flex', height: '2.5em'}}
-      onSubmit={() => dispatch(addRecipe(body))
-        .then(() => dispatch(recipeActions.clearSearchFields()))
-        .then(() => dispatch(syncRecipes()))}
+      onSubmit={handleSubmit}
     >
       <InputText 
-        value={newIngredientsList}
         onChange={(e) => dispatch(recipeActions.setRecipeName(e.target.value))}
       >
         <StyledInputBase
+          value={newRecipeName}
           placeholder="Recipe Name"
         />
       </InputText>
       <InputText
-        value={newIngredientsList}
         onChange={(e) => dispatch(recipeActions.setIngredientList(e.target.value))}
       >
         <StyledInputBase
+          value={newIngredientsList}
           placeholder="Ingredients"
         />
       </InputText>
