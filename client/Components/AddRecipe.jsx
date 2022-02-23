@@ -48,7 +48,7 @@ const AddRecipe = () => {
   };
 
   return(
-    <Box component="form" sx={{display: 'flex', height: '2.5em'}}
+    <Box component="form" sx={{flexGrow: 1, display: 'flex', height: '2.5em'}}
       onSubmit={() => dispatch(addRecipe(body))
         .then(() => dispatch(recipeActions.clearSearchFields()))
         .then(() => dispatch(syncRecipes()))}

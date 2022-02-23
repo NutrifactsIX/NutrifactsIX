@@ -1,5 +1,9 @@
 //Import dependencies
+import { useSelector, useDispatch } from 'react-redux';
+import { changeTheme } from '../store/users-slice';
 import React from 'react';
+
+//Import Components
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -7,13 +11,15 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AddRecipe from './AddRecipe.jsx';
 import IconButton from '@mui/material/IconButton';
 import Switch from '@mui/material/Switch';
-//Import Components
+import Button from '@mui/material/Button';
+import { Box } from '@mui/material';
 
 //React Component
-const Header = ({colorMode}) => {
+const Header = () => {
+  const dispatch = useDispatch();
   return (
     <AppBar position="static"
-      sx={{ position: 'fixed' }}
+      sx={{ position: 'fixed', zIndex: 10 }}
     >
       <Toolbar>
         <IconButton
@@ -33,8 +39,10 @@ const Header = ({colorMode}) => {
         >
           WOBBEGONG
         </Typography>
-        <Switch onClick={colorMode.toggleColorMode}/>
         <AddRecipe/>
+        {/* <Switch onClick={colorMode.toggleColorMode}/> */}
+        <Switch onClick={() => dispatch(changeTheme())}/>
+        <Button color="inherit">Logout</Button>
       </Toolbar>
     </AppBar>
   );
