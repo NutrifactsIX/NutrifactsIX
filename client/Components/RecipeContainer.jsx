@@ -8,6 +8,7 @@ import { Grid, Paper } from '@mui/material';
 import RecipeCard from './RecipeCards.jsx';
 import { recipeActions, syncRecipes } from '../store/recipes-slice';
 import { useSelector, useDispatch } from 'react-redux';
+// import DoughnutChart from './Components/ChartJS/PieChart.jsx';
 
 
 const RecipeContainer = () => {
@@ -30,14 +31,15 @@ const RecipeContainer = () => {
 		// 	const thumbUrl = ingredient.photo.thumb;
 		// 	const highResUrl = ingredient.photo.highres;
 		// }
-		recipeList.push(<RecipeCard key={recipe._id} id={recipe._id} name={name} ingredientList={ingredientList} query={query}/>)
+		recipeList.push(
+		<Grid key={recipe._id} item>
+			<RecipeCard  id={recipe._id} name={name} ingredientList={ingredientList} query={query}/>
+		</Grid>)
 	}
 
 	return (
-		<Grid container direction='column' spacing={4} >
-				<Grid item>
-					{recipeList}
-			</Grid>
+		<Grid container direction='column' spacing={4} sx={{marginTop: '200px'}} >
+				{recipeList}
 		</Grid>
 	);
 };

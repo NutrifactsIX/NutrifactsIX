@@ -1,7 +1,8 @@
 //Import dependencies
-import { FormControl, InputLabel, Input, TextField, FormHelperText, FormLabel,} from '@mui/material'
+import { FormControl, InputLabel, Input, TextField, FormHelperText, FormLabel } from '@mui/material';
 import React, { useState } from 'react';
 import '../App.scss';
+import { Box } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -11,16 +12,20 @@ import Typography from '@mui/material/Typography';
 import { editRecipe, deleteRecipe, syncRecipes } from '../store/recipes-slice';
 import { useDispatch } from 'react-redux';
 
+// import canvas from 'canvas';
+
 //import components
-// import Chart from './Charts'
 import IngredientsList from './IngredientsList.jsx';
 import ChartContainer from './ChartContainer.jsx';
+import DoughnutChart from './ChartJS/PieChart.jsx';
 
 const RecipeCard = (props) => {
-	const dispatch = useDispatch()
-	const [isEditing, setIsEditing] = useState(false);
-	const [editQuery, setQuery] = useState(props.query);
-	const [editRecipeName, setEditRecipeName] = useState(props.name);
+	const dispatch = useDispatch();
+	console.log("Here's the ingredient list: ", props.ingredientList);
+
+	const [ isEditing, setIsEditing ] = useState(false);
+	const [ editQuery, setQuery ] = useState(props.query);
+	const [ editRecipeName, setEditRecipeName ] = useState(props.name);
 
 	const editBody = {
 		id: props.id,
@@ -29,121 +34,116 @@ const RecipeCard = (props) => {
 	};
 
 	const editRecipeNameHandler = (name) => {
-		setEditRecipeName(name)
-	}
+		setEditRecipeName(name);
+	};
 	const editQueryHandler = (query) => {
-		setQuery(query)
-	}
+		setQuery(query);
+	};
 
 	const editBtnHandler = () => {
-		setIsEditing(true)
+		setIsEditing(true);
 	};
 
 	const submitBtnHandler = () => {
-		setIsEditing(false)
-	}
+		setIsEditing(false);
+	};
 
-	const renderCard = <Card sx={{ mb: 2 }}>
-			<CardMedia
-				component='img'
-				alt='green iguana'
-				height='140'
-				image='https://www.greatschools.org/gk/wp-content/uploads/2016/04/Tables-charts-graphs.jpg'
-			/>
+	const renderCard = (
+		<Card sx={{ mb: 2 }}>
+			<Typography gutterBottom variant='h4' component='div' align='center'>
+				{props.name}
+			</Typography>
+			<ChartContainer ingredientList={props.ingredientList} />
 			<CardContent>
-				<Typography gutterBottom variant='h5' component='div'>
-					{props.name}
-				</Typography>
-				<IngredientsList
-					ingredientList={props.ingredientList}
-					recipeName={props.name}
+				<IngredientsList ingredientList={props.ingredientList} recipeName={props.name} />
+			</CardContent>
+			<CardActions>
+				<Box sx={{ width: '100%', display: 'flex' }}>
+					<Box sx={{ flexGrow: 1 }}>
+						<Button variant='outlined' size='large' onClick={editBtnHandler}>
+							Edit
+						</Button>
+					</Box>
+					<Box sx={{ flexGrow: 1 }}>
+						<Button
+							variant='outlined'
+							size='large'
+							onClick={() => dispatch(deleteRecipe(props.id)).then(() => dispatch(syncRecipes()))}
+						>
+							Delete
+						</Button>
+					</Box>
+				</Box>
+			</CardActions>
+		</Card>
+	);
+
+	const renderEditCard = (
+		<Card sx={{ mb: 2 }}>
+			<Typography gutterBottom variant='h4' component='div' align='center'>
+				<TextField
+						fullWidth
+						required
+						label='Name'
+						id='fullWidth'
+						sx={{ my: 2 }}
+						value={editRecipeName}
+						onChange={(e) => editRecipeNameHandler(e.target.value)}
+					/>
+			</Typography>
+			<ChartContainer ingredientList={props.ingredientList} />
+			<CardContent>
+				<TextField
+					fullWidth
+					required
+					label='Ingredients'
+					id='fullWidth'
+					sx={{ mb: 2 }}
+					multiline={true}
+					rows={5}
+					value={editQuery}
+					onChange={(e) => editQueryHandler(e.target.value)}
 				/>
 			</CardContent>
 			<CardActions>
-				<Button variant='outlined' size='large' onClick={editBtnHandler}>
-					Edit
-				</Button>
-				<Button variant='outlined' size='large' onClick={() => dispatch(deleteRecipe(props.id)).then(() => dispatch(syncRecipes()))}>
-					Delete
-				</Button>
+				<Box sx={{ width: '100%', display: 'flex', alignContent: 'space-between'}}>
+					<Box sx={{ flexGrow: 1 }}>
+						<Button
+					variant='outlined'
+					size='large'
+					onClick={() =>
+						dispatch(editRecipe(editBody))
+							.then(() => dispatch(syncRecipes()))
+							.then(() => submitBtnHandler())}
+						>
+							Submit
+						</Button>
+					</Box>
+					<Box sx={{ flexGrow: 1 }}>
+						<Button
+							variant='outlined'
+							size='large'
+							onClick={() => dispatch(deleteRecipe(props.id)).then(() => dispatch(syncRecipes()))}
+						>
+							Delete
+						</Button>
+					</Box>
+					<Box sx={{ flexGrow: 1 }}>
+						<Button
+							variant='outlined'
+							size='large'
+							onClick={() => submitBtnHandler()}
+						>
+							Close
+						</Button>
+					</Box>
+				</Box>
 			</CardActions>
-		</Card>;
+		</Card>
 
-  const renderEditCard = (
-    <Card sx={{ mb: 2 }}>
-      <CardMedia
-        component="img"
-        alt="green iguana"
-        height="140"
-        image="https://www.greatschools.org/gk/wp-content/uploads/2016/04/Tables-charts-graphs.jpg"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          <TextField
-            fullWidth
-            required
-            label="Name"
-            id="fullWidth"
-            sx={{ my: 2 }}
-            value={editRecipeName}
-            onChange={(e) => editRecipeNameHandler(e.target.value)}
-          />
-        </Typography>
-
-        <TextField
-          fullWidth
-          required
-          label="Ingredients"
-          id="fullWidth"
-          sx={{ mb: 2 }}
-          multiline={true}
-          rows={11}
-          value={editQuery}
-          onChange={(e) => editQueryHandler(e.target.value)}
-        />
-      </CardContent>
-      <CardActions>
-        <Button variant="outlined" size="large" onClick={() => dispatch(editRecipe(editBody)).then(() => dispatch(syncRecipes())).then(() => submitBtnHandler())}>
-          Submit
-        </Button>
-        <Button
-          variant="outlined"
-          size="large"
-          onClick={() =>
-            dispatch(deleteRecipe(props.id)).then(() => dispatch(syncRecipes()))
-          }
-        >
-          Delete
-        </Button>
-      </CardActions>
-    </Card>
-  );;
-
-  return (
-		<div>
-			{isEditing ? renderEditCard : renderCard}
-		</div>
-
-		//   <div className ="recipeCard"></div>
-		// <h1 >{props.name}</h1>
-		//       <div className='recipeBody'>
-		//           <IngredientsList ingredients={props.ingredients}/>
-		//           <ChartContainer />
-		//       </div>
-		//       <div className='cardButtons'>
-		//           <button className='button'>EDIT</button>
-		//           <button className='button'>DELETE</button>
-		//       </div>
-		//   </div>
-
-		// <List/>
-		// <Chart/>
-		//name of recipe
-		//edit and delete buttons
-		//STRETCH
-		//Like,start,favorite button of some sort
-		//share recipe button for socials
 	);
+
+	return <div>{isEditing ? renderEditCard : renderCard}</div>;
 };
 
 export default RecipeCard;

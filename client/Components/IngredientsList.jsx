@@ -13,7 +13,6 @@ function createData(name, calories, fat, carbs, protein, thumbUrl) {
 	return { name, calories, fat, carbs, protein, thumbUrl };
 }
 
-
 //Import Components
 const IngredientsList = (props) => {
 	const rows = [];
@@ -78,7 +77,7 @@ const IngredientsList = (props) => {
 						>
 							<TableCell component='th' scope='row' sx={{display: 'flex', alignItems: 'center'}}>
 								{row.name}
-								<img src={row.thumbUrl} style={{ width: '30px', height: '30px', marginLeft: '5px'}}></img>
+								<img src={row.thumbUrl} style={{ width: '30px', height: '30px', marginLeft: '5px', borderRadius: '50%'}}></img>
 							</TableCell>
 							<TableCell align='right'>{row.calories}</TableCell>
 							<TableCell align='right'>{row.fat}</TableCell>
