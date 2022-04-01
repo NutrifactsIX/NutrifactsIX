@@ -1,5 +1,5 @@
 {
-  "name": "wobbegong",
+  "name": "NutrifactsIX",
   "version": "1.0.0",
   "description": "An open source nutrition tracking application",
   "main": "index.js",
@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/wobbegong-31/wobbegong/issues"
   },
-  "homepage": "https://github.com/wobbegong-31/wobbegong#readme",
+  "homepage": "https://github.com/NutrifactsIX/NutrifactsIX#readme",
   "devDependencies": {
     "@babel/core": "^7.17.3",
     "@babel/plugin-transform-runtime": "^7.17.0",
